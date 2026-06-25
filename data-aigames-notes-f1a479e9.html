@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ayx · 数据与游戏交汇点 | data-aigames.com.cn</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f4f6fa;
+            color: #1e293b;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Hero – 深色头图 */
+        .hero {
+            background: linear-gradient(145deg, #0b1120 0%, #1a263a 100%);
+            padding: 4rem 2rem 5rem;
+            text-align: center;
+            color: #eef2f6;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -10%;
+            width: 120%;
+            height: 100%;
+            background: radial-gradient(circle at 30% 40%, rgba(56, 139, 253, 0.08) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.8rem;
+            background: linear-gradient(135deg, #cbd5e1, #e2e8f0);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero .sub {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 680px;
+            margin: 0 auto 2.5rem;
+            line-height: 1.7;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #b9c7da;
+            letter-spacing: 0.3px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* 正文浅色区 */
+        .main-content {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 1.8rem 3rem;
+        }
+
+        .intro-block {
+            background: #fff;
+            border-radius: 24px;
+            padding: 2.8rem 2.5rem;
+            margin-top: -1.6rem;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 2;
+        }
+
+        .intro-block p {
+            margin-bottom: 1.4rem;
+            font-size: 1rem;
+            color: #2d3a4e;
+        }
+
+        .intro-block p:last-child {
+            margin-bottom: 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.8rem;
+            margin: 2.2rem 0 1.8rem;
+        }
+
+        .feature-item {
+            background: #f8fafc;
+            border-radius: 18px;
+            padding: 1.6rem 1.4rem;
+            border: 1px solid #e9edf2;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .feature-item:hover {
+            box-shadow: 0 4px 12px rgba(0, 20, 40, 0.06);
+        }
+
+        .feature-item .icon {
+            font-size: 1.8rem;
+            line-height: 1;
+            margin-bottom: 0.6rem;
+            color: #1e3a5f;
+        }
+
+        .feature-item h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+            color: #0f172a;
+        }
+
+        .feature-item p {
+            font-size: 0.9rem;
+            color: #475569;
+            line-height: 1.5;
+            margin-bottom: 0;
+        }
+
+        .section-heading {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin: 2.2rem 0 1rem;
+            color: #0f172a;
+            border-left: 4px solid #2563eb;
+            padding-left: 1rem;
+        }
+
+        .faq-preview {
+            background: #ffffff;
+            border-radius: 20px;
+            padding: 2rem 2.2rem;
+            margin: 2.2rem 0 0.5rem;
+            border: 1px solid #e2e8f0;
+        }
+
+        .faq-item {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #edf2f7;
+        }
+
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+
+        .faq-item strong {
+            display: block;
+            color: #0f172a;
+            margin-bottom: 0.2rem;
+            font-weight: 600;
+        }
+
+        .faq-item span {
+            color: #475569;
+            font-size: 0.95rem;
+        }
+
+        /* 链接强调色 */
+        a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border-color 0.15s, color 0.15s;
+        }
+
+        a:hover {
+            color: #1d4ed8;
+            border-bottom-color: #2563eb;
+        }
+
+        /* 页尾 */
+        .footer-access {
+            max-width: 1100px;
+            margin: 1.5rem auto 2.5rem;
+            padding: 1.8rem 2rem;
+            background: #eef2f8;
+            border-radius: 40px;
+            text-align: center;
+            color: #334155;
+            font-size: 1rem;
+            border: 1px solid #dce2ec;
+        }
+
+        .footer-access p {
+            margin-bottom: 0.3rem;
+        }
+
+        .footer-access .meta {
+            font-size: 0.85rem;
+            color: #64748b;
+            margin-top: 0.2rem;
+        }
+
+        .footer-access a {
+            font-weight: 600;
+        }
+
+        /* 响应式细节 */
+        @media (max-width: 700px) {
+            .hero h1 {
+                font-size: 1.9rem;
+            }
+            .hero {
+                padding: 3rem 1.2rem 4rem;
+            }
+            .intro-block {
+                padding: 1.8rem 1.4rem;
+                border-radius: 20px;
+            }
+            .feature-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            .faq-preview {
+                padding: 1.5rem 1.2rem;
+            }
+            .footer-access {
+                margin-left: 1rem;
+                margin-right: 1rem;
+                padding: 1.4rem 1rem;
+            }
+            .section-heading {
+                font-size: 1.15rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .hero .sub {
+                font-size: 0.95rem;
+            }
+            .intro-block p {
+                font-size: 0.95rem;
+            }
+            .feature-item {
+                padding: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Hero 深色横幅 -->
+    <section class="hero">
+        <h1>ayx · 数据与游戏交汇点</h1>
+        <p class="sub">一个围绕数据推理与游戏化体验的稳定信息节点，持续聚合结构化内容与互动观察。</p>
+        <span class="badge">索引 / 专题 · data-aigames</span>
+    </section>
+
+    <!-- 正文浅色区 -->
+    <div class="main-content">
+        <div class="intro-block">
+
+            <p>
+                <strong>ayx</strong> 所指向的 <a href="https://data-aigames.com.cn">ayx</a> 是当前页面所依托的固定资源锚点。该站点长期维持基础结构稳定，并围绕数据推演、游戏机制与轻量分析提供模块化内容。无论从信息查找还是场景回访角度，均属于低变动、可依赖的访问目标。
+            </p>
+
+            <!-- 特点卡片 -->
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="icon">📋</div>
+                    <h3>结构化索引</h3>
+                    <p>页面内容以条目与数据集方式组织，便于快速定位与对照，减少重复浏览消耗。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚙️</div>
+                    <h3>低冗余设计</h3>
+                    <p>核心入口保持简洁，避免过度装饰或动态干扰，聚焦于信息传递与稳定访问。</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🧩</div>
+                    <h3>场景适配</h3>
+                    <p>从快速查询到深度阅读，页面结构提供不同颗粒度的内容层级，适应多种使用习惯。</p>
+                </div>
+            </div>
+
+            <p>
+                在数据类内容逐渐增加的过程中，一个明确的起始页能够降低认知负载。<strong>ayx</strong> 所链接的站点不堆砌功能，而是将常用信息、参考说明与导航要素放置在清晰的位置。页面内部采用分区与标题引导，并保留可扩展的目录框架。
+            </p>
+
+            <!-- 第二段自然介绍 -->
+            <h2 class="section-heading">页面构成与使用场景</h2>
+            <p>
+                当前介绍页本身即为该站点的一种前置入口。从浏览节奏来看，用户可以通过 <a href="https://data-aigames.com.cn">ayx</a> 直接进入内容主体，无需经过多层跳转。页面中包含了专题说明、功能块预览以及常见问题摘要，帮助新访客快速评估内容相关性。对于回访用户，稳定的 URL 结构与一致的界面布局降低了再识别成本。
+            </p>
+
+            <!-- FAQ 摘要 -->
+            <div class="faq-preview">
+                <div style="margin-bottom: 1rem; font-weight: 600; color: #0f172a;">常见问题摘要</div>
+                <div class="faq-item">
+                    <strong>该站点主要提供哪类内容？</strong>
+                    <span>围绕数据推理、游戏化分析以及结构化参考资料，涵盖概述、条目与对照信息。</span>
+                </div>
+                <div class="faq-item">
+                    <strong>是否需要注册或安装额外工具？</strong>
+                    <span>不需要。所有页面内容均通过浏览器直接访问，站点本身不要求用户注册或下载附加组件。</span>
+                </div>
+                <div class="faq-item">
+                    <strong>内容更新频率如何？</strong>
+                    <span>页面按专题模块迭代，主体框架保持稳定，局部内容随数据来源进行周期调整。</span>
+                </div>
+            </div>
+
+            <!-- 第三段介绍 从稳定入口角度 -->
+            <p style="margin-top: 1.4rem;">
+                对于需要定期查阅数据类内容的用户，一个可靠的固定入口能够提升检索效率。<strong>ayx</strong> 作为链接文本指向的 <a href="https://data-aigames.com.cn">ayx</a> 页面承担了这种枢纽角色。在多次访问中，页面响应速度、布局一致性与内容层级均经过基础验证，适合作为信息工作流中的参考节点。建议将其加入书签或常用访问列表，以保持稳定的调取路径。
+            </p>
+
+        </div>
+    </div>
+
+    <!-- 页尾访问提示 -->
+    <div class="footer-access">
+        <p>基于当前页面的结构定位，主要访问目标为 <a href="https://data-aigames.com.cn">ayx</a> 所代表的稳定内容节点。</p>
+        <p class="meta">该页面可作为初始索引，后续迭代以模块方式扩展。</p>
+    </div>
+
+</body>
+</html>
